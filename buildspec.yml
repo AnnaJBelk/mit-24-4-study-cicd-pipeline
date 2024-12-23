@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 22
+    commands:
+      - npm install --legacy-peer-deps # Ensures all dependencies (including dev) are installed
+  build:
+    commands:
+      - CI=false npx vitest run --coverage # Runs Vitest tests with coverage
+artifacts:
+  base-directory: build
+  files:
+    - "**/*"
